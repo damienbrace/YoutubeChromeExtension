@@ -4,23 +4,41 @@ let getLikesElement = document.querySelectorAll("#top-level-buttons-computed #te
 function likeCount(likeElement){
     // Get like count from element
     upVotes = likeElement[0].textContent;
-    // Remove "K" from number
-    upVotes = upVotes.split("K");
-    // Select number
-    upVotes = upVotes[0];
-    // Return likes as an interger
-    return Number(upVotes);
+    // Check if like count is in the 1,000's
+    if (upVotes.includes("K")){
+        // Remove "K" from number
+        upVotes = upVotes.split("K");
+        // Select number
+        upVotes = upVotes[0];
+        // Return likes as an interger
+        upVotes = upVotes + "000"
+        return Number(upVotes);
+    }
+    else{
+        // Return likes as an interger
+        return Number(upVotes);
+    }
+    
+    
 }
+
 
 function dislikeCount(likeElement){
     // Get dislike count from element
     upVotes = likeElement[1].textContent;
-    // Remove "K" from number
-    upVotes = upVotes.split("K");
-    // Select number
-    upVotes = upVotes[0];
-    // Return dislikes as an interger
-    return Number(upVotes);
+    if (upVotes.includes('K')){
+        // Remove "K" from number
+        upVotes = upVotes.split("K");
+        // Select number
+        upVotes = upVotes[0];
+        upVotes = upVotes + "000"
+        // Return dislikes as an interger
+        return Number(upVotes);
+    }
+    else{
+        // Return likes as an interger
+        return Number(upVotes);
+    }
 }
 
 function calculateRating(likes, dislikes){
@@ -66,7 +84,7 @@ console.log(rating);
 
 
 
-downVotes = votes[1].textContent;
+/* downVotes = votes[1].textContent;
 
 downVotes = downVotes.split("K");
 upVotes = upVotes[0];
@@ -81,4 +99,4 @@ console.log(rating);
 
 
 let ratingText = document.querySelector("#rating");
-ratingText.textContent = rating;
+ratingText.textContent = rating; */
