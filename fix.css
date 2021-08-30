@@ -1,0 +1,8 @@
+.d-yt-rating{
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 1.4rem;
+    line-height: 2rem;
+    max-height: 4rem;
+    font-family: Roboto, Arial, sans-serif;
+}
