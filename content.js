@@ -18,8 +18,12 @@ function getAllLinks(){
     for (i=0; i < links.length; i++){
         linkID = links[i].href.split("v=")[1];
         linkTitle = links[i].title;
-        fetchStats(linkID, linkTitle)
-        
+        let stats = fetchStats(linkID, linkTitle)
+        // I think i need to make the code below async
+        parentNode = links[i].parentNode.parentNode.parentNode
+        let newNode = document.createElement("span");
+        newNode.textContent = stats.likes;
+        parentNode.insertAdjacentElement('beforebegin', newNode);
     }
     
 }
@@ -32,13 +36,22 @@ async function fetchStats(id, title){
     const stats = responseJ.items[0].statistics
     let rating = Math.floor(Number(stats.likeCount) / (Number(stats.likeCount) + Number(stats.dislikeCount)) * 100);
 
-    
-    console.log("Title: "+ title);
+    return {
+        likes: stats.likeCount,
+        dislikes: stats.dislikeCount,
+        rating: rating
+    }
+
+    /* console.log("Title: "+ title);
     console.log("ID: "+ id);
     console.log("Likes: " + stats.likeCount);
     console.log("Dislikes:" + stats.dislikeCount);
     console.log("Rating: " + rating);
-    console.log(" ");
+    console.log(" "); */
+
+    return statsObj;
+
+    
 }
 
 function addRatingsToPage(){
