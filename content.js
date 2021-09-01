@@ -13,16 +13,16 @@ function myInitCode() {
     getAllLinks();
 }
 
-function getAllLinks(){
+async function getAllLinks(){
     links = document.querySelectorAll("#video-title-link")
     for (i=0; i < links.length; i++){
         linkID = links[i].href.split("v=")[1];
         linkTitle = links[i].title;
-        let stats = fetchStats(linkID, linkTitle)
+        let stats = await fetchStats(linkID, linkTitle);
         // I think i need to make the code below async
         parentNode = links[i].parentNode.parentNode.parentNode
         let newNode = document.createElement("span");
-        newNode.textContent = stats.likes;
+        newNode.textContent = stats.rating + "%";
         parentNode.insertAdjacentElement('beforebegin', newNode);
     }
     
